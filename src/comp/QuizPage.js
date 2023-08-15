@@ -3,6 +3,7 @@ import {database}  from'./dataBase'
 import {useDispatch,useSelector} from 'react-redux'
 import { addData } from '../features/quizSlice';
 import { createNextState } from '@reduxjs/toolkit';
+import { useState } from 'react';
 
 
 function QuizPage() {
@@ -11,18 +12,22 @@ function QuizPage() {
     let nextBtn = "next"
     const StoreData = useSelector((state)=> state.quizReducer.quizData)
 
-
+    const [data,setData] = useState([])
     const dispatch = useDispatch();
     const storeHandler = ()=>{
 
         dispatch(addData(database))
+        setIndex(index+1)
 
     }
-    let score = 0;
-    let index = 0;
 
-    const questionHandler = ()=>{
-       index++
+    const [index,setIndex] = useState(-1)
+  
+    let ansObj = []
+
+    const indexHandler = ()=>{
+        if(index)
+        setIndex(index+1)
     }
 
     
@@ -30,7 +35,7 @@ function QuizPage() {
     console.log(index)
    
 
-    let ansObj = []
+    
 
 
 
@@ -39,7 +44,7 @@ function QuizPage() {
       
       <div className='quizPage'>
       {
-        StoreData?.slice(index,index+1).map((data,index)=>{
+        StoreData?.slice(index,index+1).map((data)=>{
             
              data.ans?.map((ans)=>{
                         return ansObj.push(ans)
@@ -47,13 +52,13 @@ function QuizPage() {
                 
             return(
                 <>
-                <div className='questionArea' key={index}>
-                <h1 key={index} className='the-question'>{data.question}</h1>
+                <div className='questionArea'>
+                <h1  className='the-question'>{data.question}</h1>
                   </div>
                
                 
                     {ansObj?.map((ans,i)=>{
-                        return(<button key={1}>{ans.text}</button>)
+                        return(<button >{ans.text}</button>)
                     })}
                 </>
             )
@@ -63,9 +68,9 @@ function QuizPage() {
         
       </div>
       
-      <button id='next' onClick={questionHandler}>{score===0 || score === 0 ?nextBtn = "Play":nextBtn = "Next"}</button>
+      <button id='next' onClick={index < 0 ?storeHandler:indexHandler}>{ index < 0 ? nextBtn = "Play":nextBtn = "Next"}</button>
 
-    <button onClick={storeHandler}>AddData</button>
+    {/* <button onClick={storeHandler}>AddData</button> */}
     </div>
   )
 }
