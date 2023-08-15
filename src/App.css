@@ -62,6 +62,7 @@
 }
 .btns {
   margin: 10px 0px;
+  cursor: pointer;
 }
 
 .the-question{
@@ -76,4 +77,10 @@
   border: #282c34;
   margin: 20px 10px;
   cursor: pointer ;
+}
+.correct {
+  background-color: green;
+}
+.incorrect {
+  background-color: red;
 }
