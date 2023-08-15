@@ -18,21 +18,23 @@ function QuizPage() {
 
         dispatch(addData(database))
         setIndex(index+1)
+        setData(database)
 
     }
 
     const [index,setIndex] = useState(-1)
   
+   
     let ansObj = []
 
     const indexHandler = ()=>{
-        if(index)
-        setIndex(index+1)
+
+        index<data.length?setIndex(index+1):setIndex(0)
     }
 
     
 
-    console.log(index)
+    // console.log(index)
    
 
     
@@ -68,7 +70,7 @@ function QuizPage() {
         
       </div>
       
-      <button id='next' onClick={index < 0 ?storeHandler:indexHandler}>{ index < 0 ? nextBtn = "Play":nextBtn = "Next"}</button>
+      <button id='next' onClick={index < 0 ?storeHandler:indexHandler}>{ index < 0  || index >= data.length ? nextBtn = "Play":nextBtn = "Next"}</button>
 
     {/* <button onClick={storeHandler}>AddData</button> */}
     </div>
