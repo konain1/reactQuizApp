@@ -36,3 +36,44 @@
     transform: rotate(360deg);
   }
 }
+
+/* quiz page */
+
+.main-cont {
+  border: 1px solid black;
+  height: 500px;
+}
+
+.quizPage{
+  border: 1px solid red;
+  height: 100%;
+ display: grid;
+}
+
+.questionArea{
+  background-color: blue;
+}
+
+.AnswerArea{
+  background-color: #61dafb;
+  padding: 30px 30px;
+  display: grid;
+   
+}
+.btns {
+  margin: 10px 0px;
+}
+
+.the-question{
+  color: white;
+  font-size: 58px;
+}
+
+#next {
+  width: 200px;
+  height: 50px;
+  font-size: 28px;
+  border: #282c34;
+  margin: 20px 10px;
+  cursor: pointer ;
+}
