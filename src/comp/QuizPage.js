@@ -36,6 +36,7 @@ function QuizPage() {
         index<data.length?setIndex(index+1):setIndex(0)
         setisSelected(false)
         console.log(selectedButton)
+
         if(selectedButton){
             // console.log( document.querySelectorAll('.btns')[selectedButton]);
             document.querySelectorAll('.btns')[selectedButton].style.backgroundColor = ''
@@ -70,9 +71,9 @@ function QuizPage() {
       {
         StoreData?.slice(index,index+1).map((data)=>{
             console.log(data)
-             data.ans?.map((ans)=>{
+             {/* data.ans?.map((ans)=>{
                         return ansObj.push(ans)
-                    })
+                    }) */}
                 
             return(
                 <>
@@ -81,7 +82,7 @@ function QuizPage() {
                   </div>
                
                 
-                    {ansObj?.map((ans,i)=>{
+                    {data.ans?.map((ans,i)=>{
                         return(<button className='btns' style={ isSelected && ans.correct ? { backgroundColor: 'green'} : {}} onClick={(e)=> answerPicker(e,ans,i)} >{ans.text}</button>)
                     })}
                 </>
