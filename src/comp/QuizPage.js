@@ -100,8 +100,8 @@ function QuizPage() {
         
         
       </div>
-      
-      <button id='next' onClick={index < 0 ? storeHandler:indexHandler }>{ index < 0  || index >= Quizdata.length ? nextBtn = "Play":nextBtn = "Next"}</button>
+      {isSelected || index == -1 || index >= Quizdata.length ?       <button id='next' onClick={index < 0 ? storeHandler:indexHandler }>{ index < 0  || index >= Quizdata.length ? nextBtn = "Play":nextBtn = "Next"}</button> : "please Select "
+}
 
     {/* <button onClick={storeHandler}>AddData</button> */}
     </div>
