@@ -13,7 +13,7 @@ function QuizPage() {
     const StoreData = useSelector((state)=> state.quizReducer.quizData)
 
 
-    const [data,setData] = useState([])
+    const [Quizdata,setData] = useState([])
     const dispatch = useDispatch();
     const [isSelected, setisSelected] = useState(false);
     const [selectedButton,setSelectedButton] = useState(null)
@@ -27,22 +27,29 @@ function QuizPage() {
 
     const [index,setIndex] = useState(-1)
     const [trueFalse,SetTrueFalse] = useState(false)
+    const [score,setScore] = useState(0)
   
    
     let ansObj = []
 
     const indexHandler = ()=>{
 
-        index<data.length?setIndex(index+1):setIndex(0)
-        setisSelected(false)
-        console.log(selectedButton)
+        index<Quizdata.length?setIndex(index+1):setIndex(0)
 
-        if(selectedButton){
-            // console.log( document.querySelectorAll('.btns')[selectedButton]);
-            document.querySelectorAll('.btns')[selectedButton].style.backgroundColor = ''
+        setisSelected(false)
+       
+        if(index < Quizdata.length){
+
+            if(selectedButton){
+                // console.log( document.querySelectorAll('.btns')[selectedButton]);
+                document.querySelectorAll('.btns')[selectedButton].style.backgroundColor = ''
+            }
         }
     }
 
+    
+
+    console.log(selectedButton)
 
     const answerPicker=(event,ans,i)=>{
         setisSelected(true);
@@ -50,6 +57,7 @@ function QuizPage() {
        if(ans.correct){
        
         event.target.style.backgroundColor = 'green';
+        setScore(score+1)
 
        }
        else {
@@ -58,7 +66,7 @@ function QuizPage() {
        }
 
     }
-   
+//    console.log( "score" +index)
 
     
 
@@ -93,7 +101,7 @@ function QuizPage() {
         
       </div>
       
-      <button id='next' onClick={index < 0 ? storeHandler:indexHandler }>{ index < 0  || index >= data.length ? nextBtn = "Play":nextBtn = "Next"}</button>
+      <button id='next' onClick={index < 0 ? storeHandler:indexHandler }>{ index < 0  || index >= Quizdata.length ? nextBtn = "Play":nextBtn = "Next"}</button>
 
     {/* <button onClick={storeHandler}>AddData</button> */}
     </div>
