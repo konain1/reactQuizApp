@@ -10,6 +10,7 @@ function QuizPage() {
 
 
     let nextBtn = "next"
+    // const [nextBtn,setNextBtn] = useState('Next')
     const StoreData = useSelector((state)=> state.quizReducer.quizData)
 
 
@@ -30,7 +31,7 @@ function QuizPage() {
     const [score,setScore] = useState(0)
   
    
-    let ansObj = []
+
 
     const indexHandler = ()=>{
 
@@ -44,6 +45,8 @@ function QuizPage() {
                 // console.log( document.querySelectorAll('.btns')[selectedButton]);
                 document.querySelectorAll('.btns')[selectedButton].style.backgroundColor = ''
             }
+        }else{
+            setScore(0)
         }
     }
 
@@ -69,20 +72,20 @@ function QuizPage() {
 //    console.log( "score" +index)
 
     
-
+    // const playBtn = document.querySelector('')
 
 
   return (
     <div className='main-cont'>
       
       <div className='quizPage'>
-      {
+
+      {index < Quizdata.length ? <>
+        {
+        
         StoreData?.slice(index,index+1).map((data)=>{
             console.log(data)
-             {/* data.ans?.map((ans)=>{
-                        return ansObj.push(ans)
-                    }) */}
-                
+           
             return(
                 <>
                 <div className='questionArea'>
@@ -97,10 +100,13 @@ function QuizPage() {
             )
         })
       }
+      </>: <h1>your score  = {score}</h1>}
+      
+     
         
         
       </div>
-      {isSelected || index == -1 || index >= Quizdata.length ?       <button id='next' onClick={index < 0 ? storeHandler:indexHandler }>{ index < 0  || index >= Quizdata.length ? nextBtn = "Play":nextBtn = "Next"}</button> : "please Select "
+      {isSelected || index == -1 || index >= Quizdata.length ?  <button id='next' onClick={index < 0 ? storeHandler:indexHandler }>{ index < 0  || index >= Quizdata.length ? nextBtn = "Play" : nextBtn = "Next"}</button> : ""
 }
 
     {/* <button onClick={storeHandler}>AddData</button> */}
